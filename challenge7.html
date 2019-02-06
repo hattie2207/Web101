@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div id="greeting">
+            <button onClick="createPara()">Create</button>
+        </div>
+        <br>
+        <div id="textbox">
+            <input id="textInput"/>
+            <button onClick="changePara()">Edit</button>
+        </div>
+        <br>
+        <button onClick="deletePara()">Remove</button>
+        <script>
+            "use strict";
+            function createPara(){
+
+                let myPara = document.createElement("p");
+                myPara.id = "para"
+                myPara.textContent = "Good Morning";
+                document.getElementById("greeting").appendChild(myPara);
+                
+            }
+
+            function changePara(){
+
+                let textbox = document.getElementById("textInput");
+                let myPara = document.getElementById("para");
+                myPara.textContent = textbox.value;
+                document.getElementById("greeting").appendChild(myPara);
+
+            }
+
+            function deletePara(){
+
+                let child = document.getElementById("para");                 
+                child.parentNode.removeChild(child);
+            }   
+
+        </script>
+    </body>
+</html>

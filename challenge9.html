@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="displayResult">
+        Name:<br>
+        <input id="nm" /><br>
+        <br>
+        <button onClick="search()">Search</button>
+
+        <script>
+            function search() {
+                "use strict";
+                var requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json";
+
+                var request = new XMLHttpRequest();
+                request.open("GET", requestURL);
+                request.responseType = "json";
+                request.send();
+                request.onload = function () {
+
+                    var places = request.response;
+
+                    let screen = document.getElementById("displayResult");
+                    let name = document.getElementById("nm").value;
+
+                    let result = places.find(person => person.nm === name);
+
+                    for (let i in result) {
+                        screen.innerHTML += "<p>" + i + " : " + result[i] + "</p>";
+                    }
+
+                }
+            }
+        </script>
+
+    </div>
+
+</body>
+
+</html>

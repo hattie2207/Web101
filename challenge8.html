@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <div id="squad"></div>
-        <script>
-            var requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json";
+<body>
+    <div id="squad"></div>
+    <script>
+        "use sctrict";
+        var requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json";
 
-            var request = new XMLHttpRequest();
-            request.open("GET", requestURL);
-            request.responseType = "json";
-            request.send();
-            request.onload = function(){
-                var superHeroes = request.response;
-                console.log(superHeroes);
+        var request = new XMLHttpRequest();
+        request.open("GET", requestURL);
+        request.responseType = "json";
+        request.send();
+        request.onload = function () {
+            var superHeroes = request.response;
+            console.log(superHeroes);
 
-                let info = document.getElementById("squad"); 
+            let info = document.getElementById("squad");
 
-                for (let value in superHeroes){
-                    if (superHeroes.hasOwnProperty(value)) {
+            for (let value in superHeroes) {
+                if (superHeroes.hasOwnProperty(value)) {
 
-                        if(value == "squadName"){
-                            info.innerHTML += "<h1>" + superHeroes[value] + "</h1>";   
-                        }
-                        else if(value == "members"){                    
-
-                            for (let member of superHeroes.members) {                  
-
-                                for(let data in member){
-
-                                    if(data == "name"){
-                                        info.innerHTML += "<h3>" + member[data] + "</h3>";
-                                    }
-                                    else if(data == "powers"){
-
-                                        let powerList = document.createElement("ul");
-                                        info.appendChild(powerList);
-
-                                        for(let power of member.powers){
-
-                                            powerList.innerHTML += "<li>" + power + "</li>";
-                                        }
-                                    }
-                                    else{
-                                        info.innerHTML += "<p>" + member[data] + "</p>";
-                                    }
-                                }                                  
-                            }                            
-                        }
-                        else{
-                        info.innerHTML += "<h2>" + superHeroes[value] + "</h2>"; }
+                    if (value == "squadName") {
+                        info.innerHTML += "<h1>" + superHeroes[value] + "</h1>";
                     }
-                }                
+                    else if (value == "members") {
+
+                        for (let member of superHeroes.members) {
+
+                            for (let data in member) {
+
+                                if (data == "name") {
+                                    info.innerHTML += "<h3>" + member[data] + "</h3>";
+                                }
+                                else if (data == "powers") {
+
+                                    let powerList = document.createElement("ul");
+                                    info.appendChild(powerList);
+
+                                    for (let power of member.powers) {
+
+                                        powerList.innerHTML += "<li>" + power + "</li>";
+                                    }
+                                }
+                                else {
+                                    info.innerHTML += "<p>" + member[data] + "</p>";
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        info.innerHTML += "<h2>" + superHeroes[value] + "</h2>";
+                    }
+                }
             }
-        </script>
-    </body>
+        }
+    </script>
+</body>
 </html>

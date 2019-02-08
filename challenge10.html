@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mouse Movement</title>
+</head>
+
+<body>
+    <input id="textInput" onmouseover="changeText()" value="Hey" /><br>
+    <p style="position:absolute; visibility: hidden; font-size:20px;" id="mouseText">Hello</p>
+
+    <script>
+        "use strict";
+        var text = document.getElementById("mouseText");
+        var input = document.getElementById("textInput");
+
+        document.onmousemove = function getCursorXY(e) {
+            e = e || window.event;
+
+            text.style.visibility = "visible";
+            text.style.left = e.pageX + 20 + "px";
+            text.style.top = e.pageY + 20 + "px";
+
+            // console.log(e.pageX, e.pageY);
+        }
+
+        function changeText() {
+            text.textContent = input.value;
+        }
+
+        document.onkeydown = function changeFontSize(event) {            
+
+            if (event.ctrlKey) {
+                var currentFont = text.style.fontSize.replace("px", "");
+                text.style.fontSize = parseInt(currentFont) + 10 + "px";
+            }
+
+            if (event.altKey) {
+                var currentFont = text.style.fontSize.replace("px", "");
+                if(currentFont > 20 && !currentFont <= 20){
+                    text.style.fontSize = parseInt(currentFont) - 10 + "px"; 
+                }    
+            }
+
+        }
+    </script>
+
+    </div>
+
+</body>
+
+</html>
